@@ -1,0 +1,9 @@
+<% if @gallary.errors.present? %>
+	<% @gallary.errors.messages.each do |key,val|%>
+	$(".error").html("<%= key %> <%= val[0]%>");
+	<% end %>
+<% else %>
+	$("#photo_index").html("<%= escape_javascript render(:partial => 'index', :locals => { photos: @galleries }) %>");
+	$("#myModal").modal('hide');
+	$('.modal-backdrop').remove();
+<% end %>

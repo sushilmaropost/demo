@@ -1,0 +1,46 @@
+.container
+  .row
+    .col-md-6
+      .well.well-sm
+        = form_for @contact, :html => {:class => 'form-horizontal' },  wrapper: :horizontal_form  do |f|
+          %fieldset
+            %legend.text-center.header Contact us
+            .form-group
+              = f.label :name, class: "col-md-10 col-md-offset-1"
+              .col-md-10.col-md-offset-1
+                = f.text_field :name,placeholder: 'Enter name', autofocus: true ,:required => true, class: "form-control"
+            .form-group
+              = f.label :email, class: "col-md-10 col-md-offset-1"
+              .col-md-10.col-md-offset-1
+                = f.email_field :email,placeholder: 'Enter email',autofocus: true ,:required => true, class: "form-control"
+            .form-group
+              = f.label :mobile_number, class: "col-md-10 col-md-offset-1"
+              .col-md-10.col-md-offset-1
+                =# f.text_field :mobile_number,placeholder: 'Enter 10 digit mobile number',autofocus: true ,:required => true,:pattern => "[789][0-9]{9}",class: "form-control"
+                = f.text_field :mobile_number,placeholder: 'Enter 10 digit mobile number',autofocus: true ,:required => true,class: "form-control"
+            .form-group
+              = f.label 'Description', class: "col-md-10 col-md-offset-1"
+              .col-md-10.col-md-offset-1
+                = f.text_area :message, autofocus: true ,:required => true, class: "form-control"
+            .form-group
+              .col-md-12.text-center
+                = f.submit "Send message", class: 'btn btn-primary'
+    .col-md-6
+      %div
+        .panel.panel-default
+          .text-center.header Our Office
+          .panel-body.text-center
+            %h4 Address
+            %div
+              Maropost
+              2217 Ontario
+              %br/
+              Canada
+              %br/
+              \#(703) 1234 1234
+              %br/
+              service@maropost.com
+              %br/
+            %hr/
+            #map1.map
+              %iframe{:allowfullscreen => "", :frameborder => "10", :height => "500", :src => "https://www.google.com/maps/embed/v1/place?key=AIzaSyDiuV0vMji0nfunvxCx30Dwtweqmkgqpak\n                            &q=Space+Needle,", :style => "border:0", :width => "500"}

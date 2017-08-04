@@ -1,0 +1,60 @@
+/ .row
+/   .col-md-5
+/     .count-text Total Photo Count
+/   .col-md-5.col-md-offset-2
+/   #photo_counter
+/     %span.count
+%h1 Photo Gallery
+.ajax-progress
+%h2= link_to "Add Gallery", new_gallery_path, class: "btn btn-default"
+/ %h3 Import Photos
+/ = form_tag  import_photos_path, multipart: true do
+/   = file_field_tag :file
+/   = submit_tag "Import Photos"
+#photo_index
+  = render 'index', photos: @galleries
+#myModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+= paginate @galleries
+
+
+
+/ :javascript
+/   $(document).ready(function() {
+/     $(".count-text").css("color", "orange");
+/       $.ajax({
+/             type: "GET",// GET in place of POST
+/             url: "/galleries/counter",
+/             success: function (result) {
+/                //do somthing here
+/                $(".count").html(result);
+/                $(".count-text").css("color", "green");
+/             },
+/             error: function (response){
+/               window.alert("something wrong!");
+/             }
+/        });
+                                                                                                                                                                                                                                                                                                                                                                         
+/    });
+/
+  <script>
+  $('.count').each(function () {
+  $(this).prop('Counter',0).animate({
+  Counter: $(this).text()
+  }, {
+  duration: 4000,
+  easing: 'swing',
+  step: function (now) {
+  $(this).text(Math.ceil(now));
+  console.log($(this).html());
+  if ($(this).html() < <haml_silent></haml_silent>) {
+  $(".count-text").css("color", "orange");
+  } else {
+  $(".count-text").css("color", "green");
+  }
+  }
+  });
+  });
+  </script>
+
+

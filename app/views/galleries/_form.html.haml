@@ -1,0 +1,19 @@
+#photo-modal.modal-header
+  =form_for @gallary, remote: true, :html => {:multipart => true} do |form|
+    / = form_for @gallary, remote: true,  authenticity_token: true do |form| , authenticity_token: true
+    = render "shared/error_messages", :target => @gallary
+    .form-group
+      = form.label :title
+      =# form.text_field :title, placeholder: 'Enter name' , id: :gallery_title ,:required => true,class:'form-control'
+      = form.text_field :title, placeholder: 'Enter name' , id: :gallery_title ,class:'form-control'
+    #error_explanation
+      .error
+    .form-group
+      = form.label :file
+      = form.file_field :file, :multiple => true, :name => "gallery[file]",id: :gallery_file ,class:'form-control'
+    .actions
+      = form.submit class:'btn btn-default'
+:javascript
+  $('.modal-header').one('submit', function() {
+    $(this).find('input[type="submit"]').attr('disabled','disabled');
+  });

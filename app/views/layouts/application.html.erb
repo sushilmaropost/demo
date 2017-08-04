@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Maropost - Demo</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+			  <li><%= link_to "Home",root_path %></li>
+			  <li><%= link_to "Contact Us",new_contact_path %></li>
+			  <li><%= link_to "About Us", abouts_path %></li>
+			  <li><%= link_to "Gallery", galleries_path%></li>
+			  <li><%#= link_to "Edit Account", edit_user_registration_path %></li>
+			  <li><a href="#"><%= current_user.email %></a></li>
+			  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete%></li>
+			<% else %>
+			  <li><%= link_to "Sign up", new_user_registration_path%></li>
+			  <li><%= link_to "Login", new_user_session_path%></li>
+			<% end %>
+		</ul>
+      </nav>
+    </div>
+  </header>
+</head>
+<body>
+	<div class="container">
+    <%= render 'layouts/messages' %> 
+			<%= yield %>
+		<%= render 'layouts/footer' %>
+	</div>
+</body>
+</html>
