@@ -9,14 +9,14 @@ class GalleriesController < ApplicationController
 
   end
 
-  def import
-    begin
-      Product.import(params[:file])
-      redirect_to photos_path, notice: "Products imported."
-    rescue
-      redirect_to photos_path, notice: "Invalid CSV file format/No file choosen"
-    end
-  end
+  # def import
+  #   begin
+  #     Product.import(params[:file])
+  #     redirect_to photos_path, notice: "Images are imported."
+  #   rescue
+  #     redirect_to photos_path, notice: "Invalid CSV file format/No file choosen"
+  #   end
+  # end
 
   
   def show
@@ -49,7 +49,7 @@ class GalleriesController < ApplicationController
       if @gallary.save
         redirect_to galleries_path, notice: 'Image was successfully created.'
       else
-        render :new ,notice:  'Sorry we cannot add this product.'
+        render :new ,notice:  'Sorry we cannot add this Image.'
       end
   end
 
@@ -82,12 +82,13 @@ class GalleriesController < ApplicationController
     end
   end
 
-  def get_collection
-    @galleries = Gallery.page(params[:page]).per(3)
-  end
 
   private
     
+    def get_collection
+      @galleries = Gallery.page(params[:page]).per(3)
+    end
+
     def set_photos
       @gallary = Gallery.find(params[:id])
     end

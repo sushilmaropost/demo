@@ -4,8 +4,6 @@ class TestMailer < ApplicationMailer
   def welcome_mail(user)
     @user = user
     mail to: @user.email, subject: 'Welcome Email'
-
-    # mail to: user.email, subject: "welcome to my gallery" , from: "bodharth@maropost.com"  
   end
 
   def contact_us(contact)

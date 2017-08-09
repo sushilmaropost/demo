@@ -3,8 +3,11 @@
     .col-md-6
       .well.well-sm
         = form_for @contact, :html => {:class => 'form-horizontal' },  wrapper: :horizontal_form  do |f|
+          = render "shared/error_messages", :target => @contact
           %fieldset
             %legend.text-center.header Contact us
+            #error_explanation
+              .error
             .form-group
               = f.label :name, class: "col-md-10 col-md-offset-1"
               .col-md-10.col-md-offset-1
@@ -16,7 +19,6 @@
             .form-group
               = f.label :mobile_number, class: "col-md-10 col-md-offset-1"
               .col-md-10.col-md-offset-1
-                =# f.text_field :mobile_number,placeholder: 'Enter 10 digit mobile number',autofocus: true ,:required => true,:pattern => "[789][0-9]{9}",class: "form-control"
                 = f.text_field :mobile_number,placeholder: 'Enter 10 digit mobile number',autofocus: true ,:required => true,class: "form-control"
             .form-group
               = f.label 'Description', class: "col-md-10 col-md-offset-1"
@@ -43,4 +45,4 @@
               %br/
             %hr/
             #map1.map
-              %iframe{:allowfullscreen => "", :frameborder => "10", :height => "500", :src => "https://www.google.com/maps/embed/v1/place?key=AIzaSyDiuV0vMji0nfunvxCx30Dwtweqmkgqpak\n                            &q=Space+Needle,", :style => "border:0", :width => "500"}
+              %iframe{:allowfullscreen => "", :frameborder => "10", :height => "500", :src => "https://www.google.com/maps/embed/v1/place?key=AIzaSyDiuV0vMji0nfunvxCx30Dwtweqmkgqpak\n&q=Space+Needle,", :style => "border:0", :width => "500"}
