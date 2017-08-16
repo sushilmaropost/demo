@@ -7,10 +7,12 @@
 %h1 Photo Gallery
 .ajax-progress
 %h2= link_to "Add Gallery", new_gallery_path, class: "btn btn-default"
-/ %h3 Import Photos
-/ = form_tag  import_photos_path, multipart: true do
-/   = file_field_tag :file
-/   = submit_tag "Import Photos"
+.importImage
+  %h3 Import Images
+  = form_tag  import_galleries_path, multipart: true do
+    = file_field_tag :file
+    %br/
+    = submit_tag "Import CSV"
 #photo_index
   = render 'index', photos: @galleries
 #myModal.modal.fade{:role => "dialog"}
@@ -56,5 +58,4 @@
   });
   });
   </script>
-
 

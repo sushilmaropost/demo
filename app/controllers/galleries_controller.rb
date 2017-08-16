@@ -9,14 +9,14 @@ class GalleriesController < ApplicationController
 
   end
 
-  # def import
-  #   begin
-  #     Product.import(params[:file])
-  #     redirect_to photos_path, notice: "Images are imported."
-  #   rescue
-  #     redirect_to photos_path, notice: "Invalid CSV file format/No file choosen"
-  #   end
-  # end
+  def import
+    begin
+      Gallery.import(params[:file])
+      redirect_to galleries_path, notice: "Images are imported."
+    rescue
+      redirect_to galleries_path, notice: "Invalid CSV file format/No file choosen"
+    end
+  end
 
   
   def show
@@ -56,7 +56,6 @@ class GalleriesController < ApplicationController
   
   def update
     if @gallary.update_attributes(gallery_params) 
-      #if @gallary.update(gallery_params)
       respond_to do |format|
         format.html { redirect_to galleries_path, notice: 'Image was successfully updated.' }
         format.js 

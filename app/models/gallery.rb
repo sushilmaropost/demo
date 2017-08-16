@@ -6,17 +6,16 @@ class Gallery < ActiveRecord::Base
    mount_uploader :file, AvatarUploader
    validates :title, presence: true,uniqueness: true
    validates :file, presence: true, on: :create
-   # paginates_per  6
 
- #  def self.import(file)
- #   CSV.foreach(file.path, headers: true) do |row|
- #    @imag = row['file']
- #     p = Photo.new
- #       p.remote_file_url = @imag
- #       p.title = row['title']
- #       p.save!
- #   end 
- # end
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      image = row['file']
+      g = Gallery.new
+      g.remote_file_url = image
+      g.title = row['title']
+      g.save!
+    end 
+ end
 
   private
 

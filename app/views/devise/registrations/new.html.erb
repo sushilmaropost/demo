@@ -1,0 +1,51 @@
+<%- if false%>
+  <h2>Sign up</h2>
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :email, required: true, autofocus: true %>
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+      <%= f.input :password_confirmation, required: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+<%end%>
+
+
+<%- if true%>
+  <h2>Sign up</h2>
+  <%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
+  <%= form_for(resource,url: user_registration_path, html: {class: 'form-horizontal'}) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+      <%= f.label :email, class: "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.email_field :email ,placeholder: 'example@domain.com', :required => true,class: "form-control" %>
+        <%- random_pwd = f.object.random_password%>
+        <%= f.hidden_field :password,:value => random_pwd%>
+        <%= f.hidden_field :password_confirmation,:value => random_pwd%>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-6">
+          <%= f.submit "Sign up", class: "btn btn-primary" %>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-6">
+          <%#= render "users/shared/links" %>
+          <%= render "devise/shared/links" %>
+      </div>
+  </div>
+  <% end %>
+<% end %>

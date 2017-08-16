@@ -19,17 +19,17 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users, controllers: { registrations: "registrations" }
+
   resources :users
   root to: 'homes#index'
 
+  resources :galleries do
+    collection do
+      post :import
+      #get  :counter
+    end 
+  end
 
 
-  # # default_url_options :host => "maropost.dev"
-  # root to: 'homes#index'
-  #  devise_for :users, controllers: { registrations: "registrations" }
-  #  devise_for :admin_users, ActiveAdmin::Devise.config
-  #  ActiveAdmin.routes(self)
-
-
-   resources :contacts,:galleries,:registrations,:abouts
+   resources :contacts,:registrations,:abouts
 end
