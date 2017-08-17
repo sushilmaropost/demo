@@ -8,9 +8,9 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params_contact)
     if @contact.save
       TestMailer.contact_us(@contact).deliver
-      redirect_to root_path
+      redirect_to new_contact_path, notice: "your request is submitted."
     else
-     render 'new'
+     render 'new', notice: "there is something wrong."
     end
     # @contact.request = request
     # if @contact.deliver

@@ -11,8 +11,13 @@ class GalleriesController < ApplicationController
 
   def import
     begin
-      Gallery.import(params[:file])
-      redirect_to galleries_path, notice: "Images are imported."
+      if Gallery.check_header(params[:file])
+        message = Gallery.import(params[:file],current_user.id) 
+        # redirect_to galleries_path, notice: "Images are imported."
+        redirect_to galleries_path, notice: message
+      else
+        redirect_to galleries_path, notice: "Please set the Header in CSV file"
+      end
     rescue
       redirect_to galleries_path, notice: "Invalid CSV file format/No file choosen"
     end
@@ -85,7 +90,7 @@ class GalleriesController < ApplicationController
   private
     
     def get_collection
-      @galleries = Gallery.page(params[:page]).per(3)
+      @galleries = Gallery.where("user_id" => current_user.id).page(params[:page]).per(3)
     end
 
     def set_photos

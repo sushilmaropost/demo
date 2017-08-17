@@ -8,11 +8,14 @@
       = form.text_field :title, placeholder: 'Enter name' , id: :gallery_title ,class:'form-control'
     #error_explanation
       .error
-    .form-group
-      = form.label :file
-      = form.file_field :file, :multiple => true, :name => "gallery[file]",id: :gallery_file ,class:'form-control'
+    - if (params[:action].present? and ["edit","update"].exclude?(params[:action]))
+      .form-group
+        = form.label :file
+        = form.file_field :file, :multiple => true, :name => "gallery[file]",id: :gallery_file ,class:'form-control gallery_file'
+    = form.hidden_field :user_id, :value => current_user.id
     .actions
       = form.submit class:'btn btn-default'
+
 :javascript
   $('.modal-header').one('submit', function() {
     $(this).find('input[type="submit"]').attr('disabled','disabled');

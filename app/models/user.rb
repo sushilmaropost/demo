@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   end 
 
   def random_password()
-    ('a'..'z').to_a.sort_by { rand }.join[0..1]  + ('0'..'9').to_a.sort_by { rand }.join[0..6] + ('A'..'Z').to_a.sort_by { rand }.join[0..1] 
+    ('a'..'z').to_a.sort_by { rand }.join[0..1]  + ('0'..'9').to_a.sort_by { rand }.join[0...6] + ('A'..'Z').to_a.sort_by { rand }.join[0..1] 
   end
 
   def password_required?
