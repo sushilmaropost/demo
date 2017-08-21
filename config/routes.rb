@@ -30,6 +30,15 @@ Rails.application.routes.draw do
     end 
   end
 
+  resources :contacts,:registrations,:abouts
 
-   resources :contacts,:registrations,:abouts
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :users, :only => [:create]
+      resources :galleries, :only => [:create,:index]
+      resources :contacts, :only => [:create]
+    end
+  end
+  
 end
