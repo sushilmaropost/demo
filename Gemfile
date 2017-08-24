@@ -25,8 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'execjs'
 gem 'therubyracer'
 # gem 'devise'
-# gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'lm-rails-4-2'
-# gem 'devise', '~> 4.2', '>= 4.2.1'
+#gem 'devise', :git => 'https://github.com/plataformatec/devise.git', :branch => 'lm-rails-4-2'
+#gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'devise', '~> 3.4.0'
 gem 'haml'
 gem 'activeadmin'
@@ -47,6 +47,7 @@ gem "ar-octopus", ">= 0.9.0", git: "https://github.com/thiagopradi/octopus"
 gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'erubis'
 gem 'simple_form'
+# gem 'actionpack-action_caching'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

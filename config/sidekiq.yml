@@ -1,0 +1,7 @@
+# :concurrency: 1
+#   :queues:
+#     - default
+#     - mailers
+ 
+#     - mygallery_default
+#     - mygallery_mailers

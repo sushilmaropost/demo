@@ -2,17 +2,19 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable#,:async
 
 
   after_create :welcome_send
 
   def welcome_send
-    TestMailer.welcome_mail(self).deliver     
+    #TestMailer.welcome_mail(self).deliver 
+    #TestMailer.welcome_mail(self).deliver_later 
+    PygmentsWorker.perform_async("user",self.id,self.password) 
   end 
 
   def random_password()
-    ('a'..'z').to_a.sort_by { rand }.join[0..1]  + ('0'..'9').to_a.sort_by { rand }.join[0...6] + ('A'..'Z').to_a.sort_by { rand }.join[0..1] 
+    ('a'..'z').to_a.sort_by { rand }.join[0..1]  + ('0'..'9').to_a.sort_by { rand }.join[0..6] + ('A'..'Z').to_a.sort_by { rand }.join[0...1] 
   end
 
   def password_required?

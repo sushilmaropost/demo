@@ -3,6 +3,7 @@ class GalleriesController < ApplicationController
   before_action :get_collection, only: [:update,:index] 
   before_action :authenticate_user!
   skip_before_filter :verify_authenticity_token#, :only => [:index, :show]
+  
 
 
   def index
@@ -29,7 +30,7 @@ class GalleriesController < ApplicationController
 
 
   def counter
-   @count = Gallery.count
+    @count = Gallery.where("user_id" => current_user.id).count
     respond_to do |format|
       format.json { render json: @count}
     end
@@ -77,13 +78,14 @@ class GalleriesController < ApplicationController
   def destroy
     @gallary = Gallery.find(params[:id])
     @gallary.destroy
-    respond_to do |format|
-      format.html {
-        flash[:success] = 'Image was successfully destroyed.'
-        redirect_to galleries_path
-      }
-      format.json { head :no_content }
-    end
+    redirect_to galleries_path
+    # respond_to do |format|
+    #   format.html {
+    #     flash[:success] = 'Image was successfully destroyed.'
+    #     redirect_to galleries_path
+    #   }
+    #   format.json { head :no_content }
+    # end
   end
 
 

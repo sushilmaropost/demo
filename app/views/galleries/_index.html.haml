@@ -1,7 +1,7 @@
 .row
 - photos.in_groups_of(3) do |group|
   - group.compact.each do |photo|
-    - cache(photo, :expires_in => 5.minutes) do
+    - cache(photo, :expires_in => 5.minutes.to_i) do
       .col-lg-3.col-md-4.col-xs-6.thumb
         = image_tag (photo.file_url), class: "img-sz"
         %h4= link_to photo.title, photo

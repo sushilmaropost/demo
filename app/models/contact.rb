@@ -7,7 +7,8 @@ class Contact < ActiveRecord::Base
     contact = Contact.new(name:value["name"],email:value["email"],mobile_number:value["mobile_number"],message:value["message"])
     err=[]
     if contact.save
-      TestMailer.contact_us(contact).deliver
+      # TestMailer.contact_us(contact).deliver
+      PygmentsWorker.perform_async("contact",contact.id,nil)
       err <<  {:status => 'Success', :contact => contact.as_json() ,:message => 'Request is submitted successfully.' ,:code => '200'}
       return err
     else

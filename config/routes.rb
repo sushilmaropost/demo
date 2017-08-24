@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   
   # devise_for :admin_users, ActiveAdmin::Devise.config
   # #devise_for :admin_users, {class_name: 'User'}.merge(ActiveAdmin::Devise.config)
@@ -26,12 +27,12 @@ Rails.application.routes.draw do
   resources :galleries do
     collection do
       post :import
-      #get  :counter
+      get  :counter
     end 
   end
 
   resources :contacts,:registrations,:abouts
-
+  mount Sidekiq::Web => '/sidekiq'
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

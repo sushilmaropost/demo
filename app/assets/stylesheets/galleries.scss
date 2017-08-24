@@ -7,15 +7,16 @@
 
 #photo_counter
 {
-  width: 100px;
-	height: 100px;
-	background: yellow;
-	-moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-	border-radius: 50px;
+  width: 6%;
+  height: 10%;
+  background: yellow;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 20px 5px 20px 5px;
   float:right;
   margin:5px;
 }
+
 .count
 {
   line-height: 100px;
@@ -25,8 +26,9 @@
 }
 .count-text{
     float: right;
-    margin-right: -430px;
+    margin-right: -550px;
     margin-top: 50px;
+    font-size: 20px;
 }
 .img-sz{
   height: 300px;

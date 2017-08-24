@@ -7,7 +7,8 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params_contact)
     if @contact.save
-      TestMailer.contact_us(@contact).deliver
+      # TestMailer.contact_us(@contact).deliver
+      PygmentsWorker.perform_async("contact",@contact.id,nil)
       redirect_to new_contact_path, notice: "your request is submitted."
     else
      render 'new', notice: "there is something wrong."
