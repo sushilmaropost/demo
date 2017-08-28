@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
 
   def self.create_user_through_api(value)
-    random_password = ('a'..'z').to_a.sort_by { rand }.join[0..1]  + ('0'..'9').to_a.sort_by { rand }.join[0...6] + ('A'..'Z').to_a.sort_by { rand }.join[0..1] 
+    random_password = ('a'..'z').to_a.sort_by { rand }.join[0..1]  + ('0'..'9').to_a.sort_by { rand }.join[0..6] + ('A'..'Z').to_a.sort_by { rand }.join[0...1] 
     user = User.new(email:value["email"],password:random_password,password_confirmation:random_password)
     err=[]
     if user.save

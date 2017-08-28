@@ -3,7 +3,6 @@ class PygmentsWorker
   sidekiq_options retry: false
   
   def perform(type,id,password)
-    
     if type.present?
       if type == "user"
         TestMailer.welcome_mail(id,password).deliver_later 
